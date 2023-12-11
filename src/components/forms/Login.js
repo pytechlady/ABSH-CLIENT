@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
 
@@ -33,6 +34,7 @@ const Login = () => {
       setErrMsg("Invalid Entry");
       return;
     }
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -42,6 +44,8 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
+
+      setLoading(false);
 
       const accessToken = response?.data?.data?.token;
       const user_id = response?.data?.data?.id;
@@ -64,6 +68,7 @@ const Login = () => {
       }
       errRef.current.focus();
     }
+    setLoading(false);
   };
 
   return (
@@ -133,10 +138,11 @@ const Login = () => {
 
                           <div className="d-flex justify-content-center">
                             <button
+                            disabled={loading}
                               type="submit"
                               className="btn btn-primary btn-block btn-lg gradient-custom-4 text-body"
                             >
-                              Login
+                             {loading ? "logging on..." : "Login"}
                             </button>
                           </div>
 

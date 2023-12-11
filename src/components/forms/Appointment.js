@@ -70,7 +70,6 @@ function Appointment() {
         }
       }
       );
-      console.log(auth.accessToken)
   
       setLoading(false);
       setDoctor("");

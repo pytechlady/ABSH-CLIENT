@@ -14,6 +14,7 @@ const DoctorLogin = () => {
     const [password, setPassword] = useState("");
     const [errMsg, setErrMsg] = useState("");
     const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
   
     let navigate = useNavigate();
   
@@ -33,7 +34,7 @@ const DoctorLogin = () => {
         setErrMsg("Invalid Entry");
         return;
       }
-  
+      setLoading(true);
       try {
         const response = await axios.post(
           LOGIN_URL,
@@ -42,10 +43,8 @@ const DoctorLogin = () => {
             headers: { "Content-Type": "application/json" },
           }
         );
-        console.log(JSON.stringify(response?.data));
+        setLoading(false);
         const accessToken = response?.data?.data?.token;
-  
-        console.log(accessToken);
   
         setAuth({ username, password, accessToken });
         navigate("/doc_dashboard");
@@ -66,6 +65,7 @@ const DoctorLogin = () => {
         }
         errRef.current.focus();
       }
+      setLoading(false);
     };
   
     return (
@@ -136,9 +136,10 @@ const DoctorLogin = () => {
                             <div className="d-flex justify-content-center">
                               <button
                                 type="submit"
+                                disabled={loading}
                                 className="btn btn-primary btn-block btn-lg gradient-custom-4 text-body"
                               >
-                                Login
+                                {loading ? "logging on..." : "Login"}
                               </button>
                             </div>
   
