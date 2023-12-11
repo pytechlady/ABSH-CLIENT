@@ -11,17 +11,17 @@ const doc_appt_update = () => {
     <>
     <li className="nav-item">
                       <Link to="/doc_dashboard" className="nav-link align-middle px-0">
-                          <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline">Dashboard</span>
+                         <span className="ms-1">Dashboard</span>
                       </Link>
                   </li>
                   <li className="nav-item">
                   <Link to="/doc_appointment" className="nav-link align-middle px-0">
-                      <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline">My Appointments</span>
+                     <span className="ms-1">My Appointments</span>
                   </Link>
               </li>
               {/* <li className="nav-item">
                   <Link to="/book_appointment" className="nav-link align-middle px-0">
-                      <i className="fs-4 bi-house"></i> <span className="ms-1 d-none d-sm-inline">Book Appointment</span>
+                     <span className="ms-1">Book Appointment</span>
                   </Link>
               </li> */}
               <li className="nav-item">
